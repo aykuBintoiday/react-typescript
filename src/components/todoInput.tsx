@@ -1,8 +1,23 @@
+import { useState } from "react";
+
 interface IProps {
   name?: string;
 }
 const TodoInput = (props: IProps) => {
-  const { name = "hãy điền tên vào" } = props;
+  // Javascript State
+  // const [todo, setTodo] = useState("");
+  // Typescript State
+  const [todo, setTodo] = useState<string>("");
+
+  // const [todo, setTodo] = useState<number>(2);
+
+  const handTextChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setTodo(event.target.value);
+  };
+
+  const handleClick = () => {
+    console.log(todo);
+  };
   return (
     <>
       <div
@@ -12,8 +27,8 @@ const TodoInput = (props: IProps) => {
           marginBottom: 20,
         }}
       >
-        <input value={name} type="text" />
-        <button>Add</button>
+        <input type="text" value={todo} onChange={handTextChange} />
+        <button onClick={handleClick}>Add</button>
       </div>
     </>
   );
