@@ -5,16 +5,19 @@ interface IProps {
     title: string;
     isComplete: boolean;
   }[];
+  owner?: string;
+  age?: number;
+  isDeveloper?: boolean;
 }
 
 // type
-type TProps = {
-  todo: {
-    id: number;
-    title: string;
-    isComplete: boolean;
-  }[];
-};
+// type TProps = {
+//   todo: {
+//     id: number;
+//     title: string;
+//     isComplete: boolean;
+//   }[];
+// };
 // ======================================================================================
 // Lưu ý :
 // Nên code interface tới khi mà code type
@@ -37,11 +40,12 @@ type TProps = {
 // ======================================================================================
 
 // props: IProps or TProps
-const TodoData = (props: TProps) => {
-  const { todo } = props;
+const TodoData = (props: IProps) => {
+  const { todo, owner = "unknown" } = props;
   return (
     <>
       <div>
+        <div>owner : {owner}</div>
         {todo.map((item) => {
           return (
             <div key={item.id}>
