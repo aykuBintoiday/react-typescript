@@ -8,6 +8,8 @@ interface IProps {
   owner?: string;
   age?: number;
   isDeveloper?: boolean;
+
+  deleteTodo: (value: number) => void;
 }
 
 // type
@@ -41,14 +43,18 @@ interface IProps {
 
 // props: IProps or TProps
 const TodoData = (props: IProps) => {
-  const { todo, owner = "unknown" } = props;
+  const { todo, owner = "unknown", deleteTodo } = props;
   return (
     <>
       <div>
         {todo.map((item) => {
           return (
             <div key={item.id}>
-              <div style={{ padding: "10px 0" }}>{item.title}</div>
+              <div style={{ padding: "10px 0" }}>
+                {item.id} - {item.title}
+                &nbsp;&nbsp;&nbsp;{" "}
+                <button onClick={() => deleteTodo(item.id)}>Delete</button>
+              </div>
             </div>
           );
         })}

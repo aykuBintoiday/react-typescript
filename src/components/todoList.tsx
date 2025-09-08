@@ -7,6 +7,7 @@ interface ITodo {
   title: string;
   isComplete: boolean;
 }
+
 const TodoList = () => {
   // const todo = [
   //   {
@@ -33,6 +34,15 @@ const TodoList = () => {
 
   const [listTodo, setListTodo] = useState<ITodo[]>([]);
 
+  const addNewTodo = (todo: ITodo) => {
+    setListTodo([...listTodo, todo]);
+  };
+
+  const deleteTodo = (id: number) => {
+    const newTodo = listTodo.filter((item) => item.id !== id);
+    setListTodo(newTodo);
+  };
+
   return (
     <>
       <div
@@ -56,11 +66,13 @@ const TodoList = () => {
         </div>
         <br />
         <TodoInput
-        // name="your todo"
+          // name="your todo"
+          addNewTodo={addNewTodo}
         />
         <TodoData
           todo={listTodo}
           // owner={"Bin"} age={19} isDeveloper={true}
+          deleteTodo={deleteTodo}
         />
       </div>
     </>
